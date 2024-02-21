@@ -40,12 +40,23 @@
         </record>
 
 
+
+        <record id="action_owl_todo_task_js" model="ir.actions.client">
+            <field name="name">Todo Task OWL</field>
+            <field name="tag">todo_odoo.action_todo_task_js</field>
+        </record>
+
+
         <!-- Menu -->
         <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
         <menuitem id="todo_odoo_root" name="TODO" sequence="10">
             <menuitem id="menu_todo_tasks"
                       name="ToDo Tasks"
                       action="todo_task_action"
+                      sequence="10"/>
+            <menuitem id="menu_todo_tasks_owl"
+                      name="ToDo Tasks OWL"
+                      action="action_owl_todo_task_js"
                       sequence="10"/>
         </menuitem>
 
