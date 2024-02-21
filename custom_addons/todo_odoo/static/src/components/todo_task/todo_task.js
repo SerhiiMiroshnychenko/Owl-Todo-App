@@ -9,13 +9,22 @@ import { useService } from '@web/core/utils/hooks';
 export class TodoTask extends Component {
     setup() {
         this.state = useState({
-            taskList: [
-                {id:1, name:"Task 1", color:"#FF0000", completed: true},
-                {id:2, name:"Task 2", color:"#000000", completed: true},
-                {id:3, name:"Task 3", color:"#FFFFFF", completed: false},
-            ]
+            taskList: []
         })
         this.orm = useService("orm")
+        this.model = "todo.task"
+
+        onWillStart(async ()=>{
+            await this.getAllTasks()
+        })
+    }
+
+    async getAllTasks(){
+        this.state.taskList = await this.orm.searchRead(
+            this.model,    // Модель
+            [],    // Domain
+            ["name", "color", "completed"] // Поля
+        )
     }
 
 }
