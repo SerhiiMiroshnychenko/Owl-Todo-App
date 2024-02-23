@@ -9,7 +9,10 @@ import { useService } from '@web/core/utils/hooks';
 export class TodoTask extends Component {
     setup() {
         this.state = useState({
-            taskList: []
+            task:{name:"", color:"FF0000", completed:false},
+            taskList: [],
+            isEdit: false,
+            activeId: false,
         })
         this.orm = useService("orm")
         this.model = "todo.task"
@@ -25,6 +28,33 @@ export class TodoTask extends Component {
             [],    // Domain
             ["name", "color", "completed"] // Поля
         )
+    }
+
+    addTask(){
+        this.resetForm()
+        this.state.activeId = false
+        this.state.isEdit = false
+    }
+
+    editTask(task){
+        this.state.activeId = task.id
+        this.state.isEdit = true
+//        this.state.task = {name: task.name, color: task.color, completed: task.completed}
+        this.state.task = {...task}
+    }
+
+    async saveTask(){
+        if (!this.state.isEdit){
+            await this.orm.create(this.model, [this.state.task])
+        }else {
+            await this.orm.write(this.model, [this.state.activeId], this.state.task)
+        }
+
+        await this.getAllTasks()
+    }
+
+    resetForm(){
+        this.state.task = {name:"", color:"FF0000", completed:false}
     }
 
 }
