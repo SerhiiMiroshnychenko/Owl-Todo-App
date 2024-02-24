@@ -16,8 +16,12 @@
                         <input type="text"
                                class="form-control"
                                placeholder="Search here..."
+                               t-ref="search-input"
+                               t-on-keyup="searchTasks"
                         />
-                        <button class="btn btn-outline-primary">Search</button>
+                        <button class="btn btn-outline-primary"
+                                t-on-click="searchTasks"
+                        >Search</button>
                     </div>
                 </div>
             </div>
@@ -41,6 +45,7 @@
                                             value=""
                                             t-att-id="task.id"
                                             t-att-checked="task.completed"
+                                            t-on-click="(event)=>this.toggleTask(event,task)"
                                      />
                                      <label class="form-check-label"
                                             t-att-for="task.id"
@@ -52,7 +57,9 @@
                             </td>
                             <td>
                                 <input type="color" class="form-control form-control-color" id="exampleColorInput"
-                                       t-att-value="task.color" title="Choose your color"/>
+                                       t-att-value="task.color" title="Choose your color"
+                                       t-on-change="(event)=>this.updateColor(event,task)"
+                                />
                             </td>
                             <td>
                                 <button class="btn btn-success me-2"
@@ -60,7 +67,9 @@
                                         data-bs-target="#exampleModal"
                                         t-on-click="()=>this.editTask(task)"
                                 >Edit</button>
-                                <button class="btn btn-danger">Delete</button>
+                                <button class="btn btn-danger"
+                                        t-on-click="()=>this.deleteTask(task)"
+                                >Delete</button>
                             </td>
                         </tr>
                       </tbody>
@@ -110,7 +119,7 @@
                     </div>
               </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" t-on-click="saveTask">Save changes</button>
               </div>
             </div>
