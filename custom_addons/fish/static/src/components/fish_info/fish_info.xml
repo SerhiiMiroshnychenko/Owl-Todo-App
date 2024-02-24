@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="owl.FishInfo" owl="1">
+        <div class="fish-info-container">
+            <div class="row mx-2 mt-3">
+                <div class="col-lg-6">
+                    <button class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            t-on-click="addFish"
+                    >New</button>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Search here..."
+                               t-ref="search-input"
+                               t-on-keyup="searchFish"
+                        />
+                        <button class="btn btn-outline-primary"
+                                t-on-click="searchFish"
+                        >Search</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-2">
+                <div class="col">
+                    <table class="table table-striped table-hover border">
+                      <thead>
+                        <tr>
+                            <th scope="col">Common Name</th>
+                            <th scope="col">Scientific Name</th>
+                            <th scope="col">Average Size, mm</th>
+                            <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                        <tbody>
+                        <tr t-foreach="state.fishInfo" t-as="info" t-key="info.id">
+                            <td>
+                                 <div>
+                                     <label class="form-check-label"
+                                            t-att-for="info.id"
+                                     >
+                                         <span t-out="info.common_name"/>
+                                     </label>
+                                </div>
+                            </td>
+                            <td>
+                                 <div>
+                                     <label class="form-check-label"
+                                            t-att-for="info.id"
+                                     >
+                                         <span t-out="info.scientific_name"/>
+                                     </label>
+                                </div>
+                            </td>
+                            <td>
+                                 <div>
+                                     <label class="form-check-label"
+                                            t-att-for="info.id"
+                                     >
+                                         <span t-out="info.average_size"/>
+                                     </label>
+                                </div>
+                            </td>
+                            <td>
+                                <t t-att-for="info.id" t-out="info.remarks"/>
+                            </td>
+                            <td>
+                                <button class="btn btn-success me-2"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"
+                                        t-on-click="()=>this.editFish(info)"
+                                >Edit</button>
+                                <button class="btn btn-danger"
+                                        t-on-click="()=>this.deleteFish(info)"
+                                >Delete</button>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Fish</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        <label for="common_name" class="col-sm-2 col-form-label">Common name</label>
+                        <div class="col-sm-10">
+                          <input type="text"
+                                 class="form-control"
+                                 id="common_name"
+                                 t-model="state.info.common_name"
+                                 t-att-value="state.info.common_name"/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="scientific_name" class="col-sm-2 col-form-label">Scientific name</label>
+                        <div class="col-sm-10">
+                          <input type="text"
+                                 class="form-control"
+                                 id="scientific_name"
+                                 t-model="state.info.scientific_name"
+                                 t-att-value="state.info.scientific_name"/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="average_size" class="col-sm-2 col-form-label">Average size</label>
+                        <div class="col-sm-10">
+                          <input type="text"
+                                 class="form-control"
+                                 id="average_size"
+                                 t-model="state.info.average_size"
+                                 t-att-value="state.info.average_size"/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="remarks" class="col-sm-2 col-form-label">Remarks</label>
+                        <div class="col-sm-10">
+                          <input type="text"
+                                 class="form-control"
+                                 id="remarks"
+                                 t-model="state.info.remarks"
+                                 t-att-value="state.info.remarks"/>
+                        </div>
+                    </div>
+              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" t-on-click="saveFish">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </t>
+</templates>
