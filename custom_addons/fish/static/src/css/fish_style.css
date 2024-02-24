@@ -1,0 +1,31 @@
+.scientific {
+  color: blue;
+  font-family: 'Times New Roman', sans-serif;
+  font-size: 16px;
+  transform: skewX(15deg); /* Нахил тексту під кутом 15 градусів */
+  transition: color 0.3s ease; /* Додаємо плавність зміни коліру протягом 0.3 секунди */
+}
+
+.scientific:hover {
+  color: orange; /* Змінюємо колір тексту на orange при наведенні */
+}
+
+.info-button {
+    transition: color 0.3s ease; font-size 0.3s ease;
+}
+
+.info-button:hover {
+  color: blue;
+  background-color: yellow;
+  font-size: 1.2em;
+}
+
+.remark-button {
+    transition: color 0.3s ease; font-size 0.3s ease;
+}
+
+.remark-button:hover {
+  color: blue;
+  background-color: yellow;
+  font-size: 1.2em;
+}
