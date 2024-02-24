@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <div t-name="fish.fishFishes">
+        <h2>Fishes</h2>
+        <hr/>
+        <table t-if="fish_info" class="table table-borderless">
+            <tbody>
+                <t t-foreach="fish_info" t-as="line">
+                    <tr>
+                        <td><t t-esc="line.name"/></td>
+                        <td class="text-right text-nowrap" t-esc="line.size + ' mm'"/>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </div>
+</templates>
