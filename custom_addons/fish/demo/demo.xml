@@ -14,9 +14,9 @@
         </record>
 
         <record id="object2" model="fish.fish">
-            <field name="common_name">Cherry barb</field>
-            <field name="scientific_name">Puntius titteya</field>
-            <field name="average_size">48</field>
+            <field name="common_name">Neon Tetra</field>
+            <field name="scientific_name">Paracheirodon innesi</field>
+            <field name="average_size">25</field>
         </record>
 
         <record id="object3" model="fish.fish">
