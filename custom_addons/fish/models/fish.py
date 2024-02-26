@@ -11,6 +11,18 @@ class FishFish(models.Model):
     image = fields.Image()
     remarks = fields.Html()
     info_id = fields.Integer()
+    is_in_stock = fields.Boolean(string='In Stock', default=False)
+    currency_id = fields.Many2one(
+        'res.currency',
+        string="Currency",
+    )
+    main_currency_id = fields.Many2one(
+        'res.currency',
+        string="Main Currency",
+        compute='_compute_main_currency',
+    )
+    price = fields.Monetary(currency_field='main_currency_id')
+    currency_name = fields.Char(related='main_currency_id.name')
 
     def info(self):
         vals_list = {
@@ -58,3 +70,11 @@ class FishFish(models.Model):
             'res_id': self.id,
             'context': {'default_remarks': result},
         }
+
+    def _compute_main_currency(self):
+        main_currency = self.env.user.company_id.currency_id
+        for fish in self:
+            if fish.currency_id:
+                fish.main_currency_id = fish.currency_id
+            else:
+                fish.main_currency_id = main_currency.id
