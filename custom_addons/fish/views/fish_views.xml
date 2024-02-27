@@ -9,6 +9,10 @@
                 <field name="image" widget="image" options="{'size': (50, 50)}"/>
                 <field name="common_name"/>
                 <field name="scientific_name"/>
+                <field name="is_in_stock"/>
+                <field name="price" attrs="{'invisible': [('is_in_stock', '=', False)]}"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="main_currency_id" invisible="1"/>
                 <field name="average_size"/>
                 <button name="info" type="object" icon="fa-info-circle fa-2x" class="info-button"/>
                 <button name="remark" type="object" icon="fa-newspaper-o" class="remark-button"/>
@@ -67,6 +71,11 @@
                             <field name="scientific_name" class="scientific"/>
                             <field name="average_size"/>
                             <field name="image"/>
+                        </group>
+                        <group>
+                            <field name="is_in_stock"/>
+                            <field name="price"/>
+                            <field name="currency_id"/>
                         </group>
                         <group>
                             <field name="image" widget="image" readonly="0" string=""/>
