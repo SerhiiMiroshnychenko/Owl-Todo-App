@@ -9,7 +9,7 @@ import { useService } from '@web/core/utils/hooks';
 export class FishInfo extends Component {
     setup() {
         this.state = useState({
-            info:{common_name:"", scientific_name:"", average_size:0, remarks:""},
+            info:{common_name:"", scientific_name:"", average_size:0, is_in_stock:false, price:0, remarks:""},
             fishInfo: [],
             isEdit: false,
             activeId: false,
@@ -27,7 +27,7 @@ export class FishInfo extends Component {
         this.state.fishInfo = await this.orm.searchRead(
             this.model,    // Модель
             [],    // Domain
-            ["common_name", "scientific_name", "average_size", "remarks"] // Поля
+            ["common_name", "scientific_name", "average_size", "is_in_stock", "price", "currency_name", "remarks"] // Поля
         )
     }
 
@@ -54,7 +54,7 @@ export class FishInfo extends Component {
     }
 
     resetForm(){
-        this.state.info = {common_name:"", scientific_name:"", average_size:0, remarks:""}
+        this.state.info = {common_name:"", scientific_name:"", average_size:0, is_in_stock:false, price:0, remarks:""}
     }
 
     async deleteFish(info){
@@ -68,16 +68,14 @@ export class FishInfo extends Component {
         this.state.fishInfo = await this.orm.searchRead(
             this.model,    // Модель
             [['common_name', 'ilike', text]],    // Domain
-            ["common_name", "scientific_name", "average_size", "remarks"] // Поля
+            ["common_name", "scientific_name", "average_size", "is_in_stock", "price", "currency_name", "remarks"] // Поля
         )
     }
 
-
-//    async updateColor(event, task){
-//        await this.orm.write(this.model, [task.id], {color: event.target.value})
-//       await this.getAllTasks()
-//    }
-
+    async toggleFish(event, info){
+        await this.orm.write(this.model, [info.id], {is_in_stock: event.target.checked})
+        await this.getAllfishes()
+    }
 }
 
 FishInfo.template = 'owl.FishInfo'
