@@ -34,6 +34,7 @@
                             <th scope="col">Common Name</th>
                             <th scope="col">Scientific Name</th>
                             <th scope="col">Average Size, mm</th>
+                            <th scope="col">Price in Store</th>
                             <th scope="col">Remarks</th>
                         </tr>
                       </thead>
@@ -63,6 +64,24 @@
                                             t-att-for="info.id"
                                      >
                                          <span t-out="info.average_size"/>
+                                     </label>
+                                </div>
+                            </td>
+                            <td>
+                                 <div class="form-check">
+                                     <input class="form-check-input"
+                                            type="checkbox"
+                                            value=""
+                                            t-att-id="info.id"
+                                            t-att-checked="info.is_in_stock"
+                                            t-on-click="(event)=>this.toggleFish(event,info)"
+                                     />
+                                     <label class="form-check-label"
+                                            t-att-for="info.id"
+                                            t-attf-class="#{!info.is_in_stock and 'text-decoration-line-through'}"
+                                     >
+                                         <span t-out="info.price"/>
+                                         <span class="m-2" t-out="info.currency_name"/>
                                      </label>
                                 </div>
                             </td>
@@ -122,6 +141,26 @@
                                  id="average_size"
                                  t-model="state.info.average_size"
                                  t-att-value="state.info.average_size"/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="is_in_stock" class="col-sm-2 col-form-label">In Store</label>
+                        <div class="col-sm-10">
+                          <input class="form-check-input"
+                                 type="checkbox"
+                                 t-model="state.info.is_in_stock"
+                                 t-att-value="state.info.is_in_stock"
+                                 id="is_in_stock"/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="price" class="col-sm-2 col-form-label">Price</label>
+                        <div class="col-sm-10">
+                          <input type="text"
+                                 class="form-control"
+                                 id="price"
+                                 t-model="state.info.price"
+                                 t-att-value="state.info.price"/>
                         </div>
                     </div>
                     <div class="mb-3 row">
