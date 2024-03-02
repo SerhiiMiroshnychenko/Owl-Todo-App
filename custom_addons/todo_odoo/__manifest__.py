@@ -9,7 +9,11 @@
     'website': 'https://github.com/SerhiiMiroshnychenko/Owl-Todo-App',
     'license': 'LGPL-3',
     'depends': ['base'],
-    'data': ['security/ir.model.access.csv', 'views/todo_task.xml'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/todo_task.xml',
+        'views/res_partner.xml',
+    ],
     'demo': [],
     'installable': True,
     'application': True,
