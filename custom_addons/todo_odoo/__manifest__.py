@@ -8,7 +8,7 @@
     'author': 'Serhii Miroshnychenko',
     'website': 'https://github.com/SerhiiMiroshnychenko/Owl-Todo-App',
     'license': 'LGPL-3',
-    'depends': ['base'],
+    'depends': ['base', 'web'],
     'data': [
         'security/ir.model.access.csv',
         'views/todo_task.xml',
