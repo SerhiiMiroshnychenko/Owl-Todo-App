@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name' : 'OWL Tutorial',
-    'version' : '1.0',
+    'name': 'OWL Tutorial',
+    'version': '1.0',
     'summary': 'OWL Tutorial',
     'sequence': -1,
     'description': """OWL Tutorial""",
     'category': 'OWL',
-    'depends' : ['base'],
+    'license': 'LGPL-3',
+    'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
         'views/todo_list.xml'
