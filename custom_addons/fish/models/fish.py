@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class FishFish(models.Model):
@@ -22,7 +22,7 @@ class FishFish(models.Model):
         compute='_compute_main_currency',
     )
     price = fields.Monetary(currency_field='main_currency_id')
-    currency_name = fields.Char(related='main_currency_id.name')
+    currency_name = fields.Char(compute='_compute_currency_name')
 
     def info(self):
         vals_list = {
@@ -78,3 +78,7 @@ class FishFish(models.Model):
                 fish.main_currency_id = fish.currency_id
             else:
                 fish.main_currency_id = main_currency.id
+
+    def _compute_currency_name(self):
+        for fish in self:
+            fish.currency_name = fish.main_currency_id.name
