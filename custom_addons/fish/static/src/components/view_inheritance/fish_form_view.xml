@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="owl.FishFormView" t-inherit="web.FormView" owl="1">
+        <xpath expr="//button[hasclass('o_form_button_create')]" position="after">
+            <button class="btn btn-success"
+                    t-on-click="()=>this.goWebsitePage(model.root.resId)"
+            >Page</button>
+            <button class="btn btn-danger"
+                    t-on-click="()=>this.removeFish(model.root.resModel, model.root.resId)"
+            >Remove</button>
+        </xpath>
+    </t>
+</templates>
