@@ -5,7 +5,7 @@
         <field name="name">fish.fish.view.tree</field>
         <field name="model">fish.fish</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree js_class="fish_list_view">
                 <field name="image" widget="image" options="{'size': (50, 50)}"/>
                 <field name="common_name"/>
                 <field name="scientific_name"/>
@@ -14,8 +14,8 @@
                 <field name="currency_id" invisible="1"/>
                 <field name="main_currency_id" invisible="1"/>
                 <field name="average_size"/>
-                <button name="info" type="object" icon="fa-info-circle fa-2x" class="info-button"/>
-                <button name="remark" type="object" icon="fa-newspaper-o" class="remark-button"/>
+                <button name="info" type="object" icon="fa-info-circle fa-2x" class="info-button" string=" "/>
+                <button name="remark" type="object" icon="fa-newspaper-o" class="remark-button" string=" "/>
             </tree>
         </field>
     </record>
@@ -59,7 +59,7 @@
         <field name="name">fish.fish.form</field>
         <field name="model">fish.fish</field>
         <field name="arch" type="xml">
-            <form>
+            <form js_class="fish_form_view">
                 <sheet>
                     <h1 class="d-flex flex-row">
                         <field name="common_name" placeholder="Common Fish Name" required="True"
