@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="owl.FishListView.Buttons" t-inherit="web.ListView.Buttons" owl="1">
+        <xpath expr="//t[contains(@t-if, 'isExportEnable')]" position="before">
+            <button class="btn btn-secondary border ms-2"  t-on-click="()=>this.selectOnSale(model)">
+                On Sale
+            </button>
+            <button class="btn btn-secondary border ms-2"  t-on-click="()=>this.selectNoSale(model)">
+                No Sale
+            </button>
+            <button class="btn btn-primary ms-2"  t-on-click="()=>this.selectAll(model)">
+                All
+            </button>
+        </xpath>
+    </t>
+</templates>
